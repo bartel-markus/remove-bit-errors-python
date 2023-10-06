@@ -2,6 +2,8 @@ import sys
 from bitstring import BitArray
 
 def invert_bit(filename_in, filename_out, offset):
-    bit_array = BitArray(open(filename_in, 'rb'))
-    bit_array.invert(offset)
-    open(filename_out, 'wb').write(bit_array.bytes)
+    with open(filename_in, 'rb') as inf:
+        bit_array = BitArray(inf)
+        bit_array.invert(offset)
+        with open(filename_out, 'wb') as out:
+            out.write(bit_array.bytes)
